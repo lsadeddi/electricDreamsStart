@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Electric Dreams</title>
+  <style media="screen">
+    /* *{border:1px solid red;} */
+    body {
+      font-family: monospace;
+      background-color: white;
+      background-image: url("Robat..jpg");
+      background-repeat: no-repeat;
+      background-position: center-;
+      margin-right: 1000px;
+      background-attachment: fixed;
+      color: #00e0ff;
+      font-size: 18px;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      margin-left: 3em;
+    }
+
+    #computer {
+      background-color: black;
+      border: 1px solid gray;
+      width: 80ch;
+      padding: 1em;
+    }
+
+    #human {
+      background-color: black;
+      border: 1px solid gray;
+      width: 80ch;
+      padding: 1em;
+      font-size: inherit;
+      font-family: inherit;
+      color: white;
+    }
+
+    button {
+      width: 20ch;
+      margin: 4em 0 0 2em;
+      font-size: inherit;
+      font-family: inherit;
+      border-radius: 50px;
+      color: #00e0ff;
+    }
+
+    .displayNone {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Electric Dreams</h1>
+  <p id="computer">Hi, how are you today?</p>
+  <input type="text" placeholder="Type your response" id="human">
+  <button type="button" name="button" id="button">Enter</button>
+
+  <script type="text/javascript">
+    //fun
+    //grab all the elements we need to control
+    let computer = document.querySelector('#computer')
+    let human = document.querySelector('#human')
+    let button = document.querySelector('#button')
+    human.focus()
+
+    //other vars we will need
+    let computerMsg = ""
+    let humanMsg = ""
+
+
+    let genericResponses = ['Why was the robot angry?', 'How many robots does it take to screw in a light bulb?', 'Why did the robot go back to robot school?', 'What did the man say to his dead robot? Rust in P....']
+    let newResponse
+    let responseNumber
+    let questionTrack = "mood"
+
+
+    button.addEventListener('click', clickHandler, false)
+    window.addEventListener('keydown', keydownHandler, false)
+
+
+    function clickHandler(evt) {
+      playgame()
+    }
+
+    function keydownHandler(evt) {
+      if (evt.keyCode === 13) {
+        playgame()
+      }
+    }
+
+
+    //time for the game logic
+
+    function playgame() {
+      humanMsg = (human.value).toLowerCase()
+      //analyze the human input
+      //if(questionTrack =="mood"){
+
+
+      //}else if (questionTrack == "color"){
+
+
+      //}else if (questionTrack == "dog") {
+
+      //  }else {
+
+      //  }
+
+
+
+
+
+        switch (questionTrack) {
+        case "mood":
+        moodAnalysis()
+
+        break
+        case "pets":
+        petsAnalysis()
+
+        break
+        case "trip":
+        tripAnalysis()
+
+        break
+       case "favPet":
+       favPetAnalysis()
+
+       break
+      case "kids":
+      kidsAnalysis()
+      break
+
+     case "date":
+     dateAnalysis()
+
+
+          break
+          //
+        default:
+          genericResponses()
+          break
+
+
+      }
+
+
+      computer.textContent = computerMsg
+      humanMsg = ""
+      human.value = humanMsg
+
+    } //end playGame
+
+    //begin moodAnalysis
+    function moodAnalysis() {
+      if (humanMsg.indexOf("good") != -1) {
+        computerMsg = "That's great. What is the one thing you can't live with out, Pets or family?"
+        questionTrack = "pets"
+      } else if (humanMsg.indexOf("bad") != -1) {
+        computerMsg = "Would you like to go on an adventure?"
+        questionTrack = "trip"
+      } else {
+        genericResponse()
+      }
+
+    }
+    //end moodAnalysis
+
+    //begin PetsAnalysis
+    function petsAnalysis() {
+      if (humanMsg.indexOf("dogs") != -1) {
+        computerMsg = "That's great! I like pets too!"
+        questionTrack = "favPet"
+      } else if (humanMsg.indexOf("family") != -1) {
+        computerMsg = "Lovely. Do you have any kids?"
+        questionTrack = "kids"
+      } else {
+        genericResponse()
+      }
+
+    }
+    //end petsAnalysis
+
+
+    //begin colorAnalysis
+    function favPetAnalysis() {
+      if (humanMsg.indexOf("cat") != -1) {
+        computerMsg = "Cats are lovely!"
+        // questionTrack = "date"
+      } else if (humanMsg.indexOf("dog") != -1) {
+        computerMsg = "That is depressing. Dogs Bite!"
+        // questionTrack = "therepy"
+      } else {
+        genericResponse()
+      }
+
+    } //end favPetAnalysis
+
+    //begin kidsAnalysis
+    function kidsAnalysis() {
+      if (humanMsg.indexOf("yes") != -1) {
+        computerMsg = "Nice! I have kids too! I have a daughter named IRobot"
+        // questionTrack = "favPet"
+      } else if (humanMsg.indexOf("no") != -1) {
+        computerMsg = "That's sad! You should make some! I have a robot friend do you want to meet?"
+        questionTrack = "date"
+      } else {
+        genericResponse()
+      }
+
+    }
+    //end kidsAnalysis
+
+    //begin colorAnalysis
+    function dateAnalysis() {
+      if (humanMsg.indexOf("yes") != -1) {
+        computerMsg = "Great! You should go to AI Restaurant. I heard they are serving delicious engine oil!"
+        // questionTrack = "date"
+      } else if (humanMsg.indexOf("no") != -1) {
+        computerMsg = "NO! She is going to be mad! You should RUN!"
+        setTimeout(computerMsg, 8000)
+KillGame()
+      // } else {
+      //   KillGame()
+      }
+
+    } //end favPetAnalysis
+
+
+
+
+    //console.log(newResponse);
+
+    function genericResponse() {
+      if (genericResponses.length > 0) {
+        newResponse = Math.floor(Math.random() * genericResponses.length)
+        //console.log(newResponse);
+        //computerMsg = 'Go away!!!'
+        computerMsg = genericResponses[newResponse]
+        //  humanMsg = ""
+
+        genericResponses.splice(newResponse, 1)
+        //  console.log(genericResponses);
+
+        // computer.textContent = computerMsg
+        //  human.value = humanMsg
+      } else {
+
+        computerMsg = "I am done with you. Leave PLEASE!!! Go search for something helpful!!!"
+        button.className = 'displayNone'
+        human.className = 'displayNone'
+        setTimeout(KillGame, 2000)
+      }
+
+
+    } //end genericResponses
+
+
+
+    function KillGame() {
+      location.assign("https://www.google.com/")
+    } //end playGame
+  </script>
+</body>
+
+</html>
