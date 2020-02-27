@@ -176,8 +176,8 @@
 
     //begin PetsAnalysis
     function petsAnalysis() {
-      if (humanMsg.indexOf("dogs") != -1) {
-        computerMsg = "That's great! I like pets too!"
+      if (humanMsg.indexOf("pets") != -1) {
+        computerMsg = "That's great! I like pets too! Do you like dogs or cats?"
         questionTrack = "favPet"
       } else if (humanMsg.indexOf("family") != -1) {
         computerMsg = "Lovely. Do you have any kids?"
@@ -233,6 +233,21 @@ KillGame()
       }
 
     } //end favPetAnalysis
+    //begin colorAnalysis
+    function tripAnalysis() {
+      if (humanMsg.indexOf("yes") != -1) {
+        computerMsg = "Great! You should go to AI Restaurant. I heard they are serving delicious engine oil!"
+        // questionTrack = "date"
+      } else if (humanMsg.indexOf("no") != -1) {
+        computerMsg = "NO! She is going to be mad! You should RUN!"
+        setTimeout(computerMsg, 8000)
+KillGame()
+      // } else {
+      //   KillGame()
+      }
+
+    } //end favPetAnalysis
+
 
 
 
